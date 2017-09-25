@@ -1,0 +1,43 @@
+- Implement omni as a modification of open ai gym whereby environments are converted to channels which inherit from
+  different entities
+- Set white list for actions
+
+
+T + 1                                T + 2                                 T+2 Rewards
+
+[{                                   [{                                    [{
+  "type":"deposit",                    "type":"deposit",
+  "currency":"btc",                    "currency":"btc",
+  "amount":"0.0",                      "amount":"0.0",
+  "available":"0.0"                    "available":"1.0"
+},{                                  },{                                   },{
+  "type":"deposit",                    "type":"deposit",
+  "currency":"usd",                    "currency":"usd",
+  "amount":"1.0",                      "amount":"1.0",
+  "available":"1.0"                    "available":"10.0"
+},{                                  },{                                   },{
+  "type":"exchange",                   "type":"exchange",                    ,
+  "currency":"btc",                    "currency":"btc",
+  "amount":"1",                        "amount":"1",
+  "available":"1"                      "available":"1000"
+},{                                  },{                                   },{
+  "type":"exchange",                   "type":"exchange",
+  "currency":"usd",                    "currency":"usd",
+  "amount":"1",                        "amount":"10000",
+  "available":"1"                      "available":"1"
+},{                                  },{                                   },{
+  "type":"trading",                    "type":"trading",
+  "currency":"btc",                    "currency":"btc",
+  "amount":"1",                        "amount":"100000000000",
+  "available":"1"                      "available":"1"
+},{                                  },{                                   },{
+  "type":"trading",                    "type":"trading",
+  "currency":"usd",                    "currency":"usd",
+  "amount":"1",                        "amount":"10000",
+  "available":"1"                      "available":"1"
+},                                   },                                    },
+...]                                 ...]                                  ...]
+
+
+
+-

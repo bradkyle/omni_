@@ -1,0 +1,1 @@
+# Inforces parsing and registration functionality for all channels
