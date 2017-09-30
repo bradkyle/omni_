@@ -1,0 +1,22 @@
+version: '2'
+services:
+  gym:
+    build: ./server
+    command: python -u gym_http_server.py
+    ports:
+      - "5000"
+    volumes:
+      - .:/server
+
+  client:
+    build: ./client
+    command: python -u example_agent.py
+    ports:
+      - "5000"
+    volumes:
+      - .:/client
+    depends_on:
+      - gym
+    links:
+      - gym
+
