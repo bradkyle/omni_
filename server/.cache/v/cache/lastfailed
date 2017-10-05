@@ -1,0 +1,4 @@
+{
+  "omni/omni/envs/exchange/server_test.py::MainTest::test_auth_request": true,
+  "omni/omni/envs/exchange/server_test.py::MainTest::test_new_account": true
+}

@@ -2,7 +2,6 @@ import argparse
 
 from flask import Flask, request, jsonify
 import json
-import uuid
 import numpy as np
 import six
 import logging
@@ -12,7 +11,6 @@ from .omni import Omni
 
 class Server(object):
     def __init__(self):
-        self.id_len = 10
         self.omni = Omni()
 
     def _lookup_instance(self, instance_id):
@@ -31,10 +29,7 @@ class Server(object):
         instance = self.omni.instantiate()
         if seed:
             instance.seed(seed)
-
-        instance_id = str(uuid.uuid4().hex)[:self.id_len]
-        self.omni.instances[instance_id] = instance
-        return instance_id
+        return instance.instance_id
 
     def reset(self, instance_id):
         instance = self._lookup_instance(instance_id)
