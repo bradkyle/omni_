@@ -2,81 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3b51371e-8c6a-409a-99ba-85876ccb2fea" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/trash/quandl/operations/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/trash/quandl/utils/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/bin/__init__.py" afterPath="$PROJECT_DIR$/trash/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/api/coinmarketcap.py" afterPath="$PROJECT_DIR$/trash/api/coinmarketcap.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/api/cryptonator.py" afterPath="$PROJECT_DIR$/trash/api/cryptonator.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/api/quandl.py" afterPath="$PROJECT_DIR$/trash/api/quandl.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/api/twitter.py" afterPath="$PROJECT_DIR$/trash/api/twitter.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/api/wikipedia.py" afterPath="$PROJECT_DIR$/trash/api/wikipedia.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/blockchain/__init__.py" afterPath="$PROJECT_DIR$/trash/blockchain/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/blockchain/blockexplorer.py" afterPath="$PROJECT_DIR$/trash/blockchain/blockexplorer.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/blockchain/createwallet.py" afterPath="$PROJECT_DIR$/trash/blockchain/createwallet.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/blockchain/exceptions.py" afterPath="$PROJECT_DIR$/trash/blockchain/exceptions.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/blockchain/exchangerates.py" afterPath="$PROJECT_DIR$/trash/blockchain/exchangerates.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/blockchain/pushtx.py" afterPath="$PROJECT_DIR$/trash/blockchain/pushtx.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/blockchain/statistics.py" afterPath="$PROJECT_DIR$/trash/blockchain/statistics.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/blockchain/util.py" afterPath="$PROJECT_DIR$/trash/blockchain/util.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/blockchain/v2/__init__.py" afterPath="$PROJECT_DIR$/trash/blockchain/v2/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/blockchain/v2/receive.py" afterPath="$PROJECT_DIR$/trash/blockchain/v2/receive.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/blockchain/wallet.py" afterPath="$PROJECT_DIR$/trash/blockchain/wallet.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/crawl/crawl.py" afterPath="$PROJECT_DIR$/trash/crawl/crawl.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/crypto_exchanges/binance.py" afterPath="$PROJECT_DIR$/trash/crypto_exchanges/binance.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/crypto_exchanges/bitfinex.py" afterPath="$PROJECT_DIR$/trash/crypto_exchanges/bitfinex.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/crypto_exchanges/bitflyer.py" afterPath="$PROJECT_DIR$/trash/crypto_exchanges/bitflyer.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/crypto_exchanges/bithumb.py" afterPath="$PROJECT_DIR$/trash/crypto_exchanges/bithumb.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/crypto_exchanges/bitstamp.py" afterPath="$PROJECT_DIR$/trash/crypto_exchanges/bitstamp.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/crypto_exchanges/bittrex.py" afterPath="$PROJECT_DIR$/trash/crypto_exchanges/bittrex.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/crypto_exchanges/coinbase_gdax.py" afterPath="$PROJECT_DIR$/trash/crypto_exchanges/coinbase_gdax.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/crypto_exchanges/coinone.py" afterPath="$PROJECT_DIR$/trash/crypto_exchanges/coinone.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/crypto_exchanges/gatecoin.py" afterPath="$PROJECT_DIR$/trash/crypto_exchanges/gatecoin.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/crypto_exchanges/gemini.py" afterPath="$PROJECT_DIR$/trash/crypto_exchanges/gemini.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/crypto_exchanges/hitbtc.py" afterPath="$PROJECT_DIR$/trash/crypto_exchanges/hitbtc.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/crypto_exchanges/korbit.py" afterPath="$PROJECT_DIR$/trash/crypto_exchanges/korbit.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/crypto_exchanges/kraken.py" afterPath="$PROJECT_DIR$/trash/crypto_exchanges/kraken.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/crypto_exchanges/lakebtc.py" afterPath="$PROJECT_DIR$/trash/crypto_exchanges/lakebtc.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/crypto_exchanges/liqui.py" afterPath="$PROJECT_DIR$/trash/crypto_exchanges/liqui.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/crypto_exchanges/okcoin.py" afterPath="$PROJECT_DIR$/trash/crypto_exchanges/okcoin.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/crypto_exchanges/poloniex.py" afterPath="$PROJECT_DIR$/trash/crypto_exchanges/poloniex.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/crypto_exchanges/quione.py" afterPath="$PROJECT_DIR$/trash/crypto_exchanges/quione.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/crypto_exchanges/yobit.py" afterPath="$PROJECT_DIR$/trash/crypto_exchanges/yobit.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/pyexchange/pyexchange.py" afterPath="$PROJECT_DIR$/trash/pyexchange/pyexchange.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/pywallet/pywallet.py" afterPath="$PROJECT_DIR$/trash/pywallet/pywallet.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/quandl/__init__.py" afterPath="$PROJECT_DIR$/trash/quandl/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/quandl/api_config.py" afterPath="$PROJECT_DIR$/trash/quandl/api_config.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/quandl/bulkdownload.py" afterPath="$PROJECT_DIR$/trash/quandl/bulkdownload.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/quandl/connection.py" afterPath="$PROJECT_DIR$/trash/quandl/connection.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/quandl/errors/__init__.py" afterPath="$PROJECT_DIR$/trash/quandl/model/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/quandl/errors/quandl_error.py" afterPath="$PROJECT_DIR$/trash/quandl/errors/quandl_error.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/quandl/get.py" afterPath="$PROJECT_DIR$/trash/quandl/get.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/quandl/get_table.py" afterPath="$PROJECT_DIR$/trash/quandl/get_table.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/quandl/message.py" afterPath="$PROJECT_DIR$/trash/quandl/message.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/quandl/model/__init__.py" afterPath="$PROJECT_DIR$/trash/quandl/errors/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/quandl/model/data.py" afterPath="$PROJECT_DIR$/trash/quandl/model/data.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/quandl/model/data_list.py" afterPath="$PROJECT_DIR$/trash/quandl/model/data_list.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/quandl/model/data_mixin.py" afterPath="$PROJECT_DIR$/trash/quandl/model/data_mixin.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/quandl/model/database.py" afterPath="$PROJECT_DIR$/trash/quandl/model/database.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/quandl/model/dataset.py" afterPath="$PROJECT_DIR$/trash/quandl/model/dataset.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/quandl/model/datatable.py" afterPath="$PROJECT_DIR$/trash/quandl/model/datatable.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/quandl/model/merged_data_list.py" afterPath="$PROJECT_DIR$/trash/quandl/model/merged_data_list.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/quandl/model/merged_dataset.py" afterPath="$PROJECT_DIR$/trash/quandl/model/merged_dataset.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/quandl/model/model_base.py" afterPath="$PROJECT_DIR$/trash/quandl/model/model_base.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/quandl/model/model_list.py" afterPath="$PROJECT_DIR$/trash/quandl/model/model_list.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/quandl/model/paginated_list.py" afterPath="$PROJECT_DIR$/trash/quandl/model/paginated_list.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/quandl/operations/__init__.py" afterPath="$PROJECT_DIR$/examples/client/seed_ex.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/quandl/operations/data_list.py" afterPath="$PROJECT_DIR$/trash/quandl/operations/data_list.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/quandl/operations/get.py" afterPath="$PROJECT_DIR$/trash/quandl/operations/get.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/quandl/operations/list.py" afterPath="$PROJECT_DIR$/trash/quandl/operations/list.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/quandl/operations/operation.py" afterPath="$PROJECT_DIR$/trash/quandl/operations/operation.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/quandl/util.py" afterPath="$PROJECT_DIR$/trash/quandl/util.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/quandl/utils/__init__.py" afterPath="$PROJECT_DIR$/examples/client/seed.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/quandl/utils/api_key_util.py" afterPath="$PROJECT_DIR$/trash/quandl/utils/api_key_util.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/omni/interfaces/quandl/version.py" afterPath="$PROJECT_DIR$/trash/quandl/version.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/omni.iml" afterPath="$PROJECT_DIR$/.idea/omni.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/omni/interfaces/__init__.py" afterPath="$PROJECT_DIR$/omni/interfaces/__init__.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/examples/client/seed.json" afterPath="$PROJECT_DIR$/examples/client/seed.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/omni/error.py" afterPath="$PROJECT_DIR$/omni/error.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/omni/interfaces/core.py" afterPath="$PROJECT_DIR$/omni/interfaces/core.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/omni/interfaces/registration.py" afterPath="$PROJECT_DIR$/omni/interfaces/registration.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/omni/omni.py" afterPath="$PROJECT_DIR$/omni/omni.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -85,55 +16,69 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DockManager">
+    <window id="1">
+      <content type="file-editors">
+        <state>
+          <leaf>
+            <file leaf-file-name="seed_act.json" pinned="false" current-in-tab="false">
+              <entry file="file://$PROJECT_DIR$/examples/client/seed_act.json">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="12">
+                    <caret line="1" column="5" lean-forward="true" selection-start-line="1" selection-start-column="3" selection-end-line="1" selection-end-column="13" />
+                    <folding />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+            <file leaf-file-name="registration.py" pinned="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/../analysis/gym/gym/envs/registration.py">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="271">
+                    <caret line="134" column="36" lean-forward="true" selection-start-line="134" selection-start-column="36" selection-end-line="134" selection-end-column="36" />
+                    <folding>
+                      <element signature="e#0#14#0" expanded="true" />
+                    </folding>
+                  </state>
+                </provider>
+              </entry>
+            </file>
+          </leaf>
+        </state>
+      </content>
+    </window>
+  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
-      <split-first>
-        <leaf>
-          <file leaf-file-name="seed.json" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/examples/client/seed.json">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1476">
-                  <caret line="123" column="21" lean-forward="false" selection-start-line="123" selection-start-column="21" selection-end-line="123" selection-end-column="21" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/trash/__init__.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="595">
-                  <caret line="265" column="0" lean-forward="true" selection-start-line="265" selection-start-column="0" selection-end-line="265" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="__init__.py" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/omni/interfaces/__init__.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="360">
-                  <caret line="30" column="1" lean-forward="false" selection-start-line="30" selection-start-column="1" selection-end-line="30" selection-end-column="1" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="seed.json" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/examples/client/seed.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="672">
+              <caret line="194" column="9" lean-forward="false" selection-start-line="194" selection-start-column="5" selection-end-line="194" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
       <find>'</find>
+      <find>args</find>
+      <find>tags</find>
     </findStrings>
     <replaceStrings>
       <replace>&quot;</replace>
+      <replace>kwargs</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -143,10 +88,16 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/trash/__init__.py" />
-        <option value="$PROJECT_DIR$/examples/client/seed.json" />
         <option value="$PROJECT_DIR$/examples/client/seed_act.json" />
         <option value="$PROJECT_DIR$/examples/client/seed_ex.json" />
         <option value="$PROJECT_DIR$/omni/interfaces/__init__.py" />
+        <option value="$PROJECT_DIR$/omni/interfaces/core.py" />
+        <option value="$PROJECT_DIR$/omni/interfaces/crypto_exchanges/gemini.py" />
+        <option value="$PROJECT_DIR$/../analysis/gym/gym/envs/registration.py" />
+        <option value="$PROJECT_DIR$/omni/error.py" />
+        <option value="$PROJECT_DIR$/examples/client/seed.json" />
+        <option value="$PROJECT_DIR$/omni/omni.py" />
+        <option value="$PROJECT_DIR$/omni/interfaces/registration.py" />
       </list>
     </option>
   </component>
@@ -173,6 +124,7 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -227,6 +179,28 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="omni" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="interfaces" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="crypto_exchanges" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="omni" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="omni" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="examples" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -251,7 +225,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -386,18 +359,17 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1599" y="-15" width="1922" height="1063" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19062833" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19275825" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -416,11 +388,30 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/omni/interfaces/registration.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="636">
+          <caret line="54" column="46" lean-forward="false" selection-start-line="54" selection-start-column="46" selection-end-line="54" selection-end-column="46" />
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/omni/omni.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="744">
+          <caret line="62" column="67" lean-forward="false" selection-start-line="62" selection-start-column="67" selection-end-line="62" selection-end-column="67" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/trash/quandl/get.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -428,9 +419,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#14#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -438,7 +426,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -446,17 +433,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/omni/omni.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="667">
-          <caret line="74" column="19" lean-forward="false" selection-start-line="74" selection-start-column="19" selection-end-line="74" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#10#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -464,7 +440,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="372">
           <caret line="31" column="176" lean-forward="true" selection-start-line="31" selection-start-column="176" selection-end-line="31" selection-end-column="176" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -472,21 +447,119 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trash/blockchain/createwallet.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/client/seed_ex.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="92" column="21" lean-forward="false" selection-start-line="92" selection-start-column="21" selection-end-line="92" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/omni/interfaces/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="30" column="1" lean-forward="false" selection-start-line="30" selection-start-column="1" selection-end-line="30" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trash/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="265" column="0" lean-forward="true" selection-start-line="265" selection-start-column="0" selection-end-line="265" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/omni/store/invocations.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="2" lean-forward="true" selection-start-line="0" selection-start-column="2" selection-end-line="0" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/omni/interfaces/core.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="62" column="29" lean-forward="false" selection-start-line="62" selection-start-column="29" selection-end-line="62" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#18#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/client/seed_act.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="12">
+          <caret line="1" column="5" lean-forward="true" selection-start-line="1" selection-start-column="3" selection-end-line="1" selection-end-column="13" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../analysis/gym/gym/error.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1248">
+          <caret line="104" column="36" lean-forward="true" selection-start-line="104" selection-start-column="36" selection-end-line="104" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/omni/error.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="775">
+          <caret line="96" column="26" lean-forward="true" selection-start-line="96" selection-start-column="26" selection-end-line="96" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../analysis/gym/gym/envs/registration.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="271">
+          <caret line="134" column="36" lean-forward="true" selection-start-line="134" selection-start-column="36" selection-end-line="134" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/server/server.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3053">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/omni/omni.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="48" column="0" lean-forward="false" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/omni/interfaces/registration.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="48">
+          <caret line="76" column="33" lean-forward="true" selection-start-line="76" selection-start-column="33" selection-end-line="76" selection-end-column="33" />
           <folding>
-            <element signature="e#0#27#0" expanded="false" />
+            <element signature="e#0#27#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/trash/blockchain/createwallet.py">
+    <entry file="file://$PROJECT_DIR$/omni/interfaces/crypto_exchanges/gemini.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -496,40 +569,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/examples/client/seed.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1476">
-          <caret line="123" column="21" lean-forward="false" selection-start-line="123" selection-start-column="21" selection-end-line="123" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/examples/client/seed_act.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="9" column="21" lean-forward="false" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/examples/client/seed_ex.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="92" column="21" lean-forward="false" selection-start-line="92" selection-start-column="21" selection-end-line="92" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/trash/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="265" column="0" lean-forward="true" selection-start-line="265" selection-start-column="0" selection-end-line="265" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/omni/interfaces/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="30" column="1" lean-forward="false" selection-start-line="30" selection-start-column="1" selection-end-line="30" selection-end-column="1" />
+        <state relative-caret-position="672">
+          <caret line="194" column="9" lean-forward="false" selection-start-line="194" selection-start-column="5" selection-end-line="194" selection-end-column="9" />
           <folding />
         </state>
       </provider>

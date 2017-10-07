@@ -55,25 +55,11 @@ class Interface():
 
     # Override in ALL subclasses
     def _invoke(self, params): raise NotImplementedError
-    def _reset(self): raise NotImplementedError
-    def _seed(self, seed=None): return []
-
-    def seed(self, seed):
-        return self._seed(seed)
-
-    def reset(self):
-        return self._reset()
 
     def invoke(self, params):
         return self._invoke(params)
 
     def cache(self):
-        return NotImplemented
-
-    def setup(self):
-        return NotImplemented
-
-    def penalise(self):
         return NotImplemented
 
 

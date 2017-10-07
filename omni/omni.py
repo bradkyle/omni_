@@ -3,13 +3,7 @@ import numpy as np
 from gym import error, spaces
 import itertools
 import uuid
-from omni.interfaces.registration import omnispawn, lookup_affordance
-
-
-class OmniCore():
-    def __init__(self):
-        raise NotImplementedError
-
+from omni.interfaces.registration import spawn
 class Omni():
     def __init__(self):
         self.instances = {}
@@ -26,29 +20,36 @@ class Omni():
                 self.instance_id = instance_id
 
             def _close(self):
-                return NotImplementedError
+                for interface in self.interfaces:
+                    interface.close()
 
             def _seed(self, seed=None):
-                return NotImplementedError
-
-            def _render(self, mode='human', close=False):
-                return NotImplementedError
+               spawn(seed, self)
 
             def _reset(self):
-                return NotImplementedError
+                for interface in self.interfaces:
+                    interface.reset()
+
+            def _lookup(self, index):
+                if index in self.affordances:
+                    affordance = self.affordances[index]
+                    return affordance
 
             def _step(self, action):
-                affordance = lookup_affordance(action[0])
-                self.observation = affordance.invoke(action[1])
+                affordance = self._lookup(action[0])
+                self.observation, penalty = affordance.invoke(action[1])
                 self.reward = self.aggregate_rewards()
                 return self.observation, self.reward, self.done, self.info
 
             def aggregate_rewards(self):
-                return NotImplemented
+                rewards = []
+                for task in self.tasks:
+                    rewards.append(task.invoke())
+                return rewards
 
             @property
             def done(self):
-                return NotImplemented
+                return False
 
             @property
             def info(self):
@@ -56,7 +57,8 @@ class Omni():
 
             @property
             def action_space(self):
-                return self.omni.action_space(self.instance_id)
+                return spaces.Tuple(spaces.Box(low=0, high=len(self.affordances), shape=1),
+                                    spaces.Box(low=-180, high=180, shape=1))
 
             @property
             def observation_space(self):
@@ -64,24 +66,14 @@ class Omni():
 
             @property
             def reward_space(self):
-                return self.omni.reward_space()
+                return spaces.Tuple(spaces.Box(low=-100, high=100, shape=1),
+                                    spaces.Box(low=-100, high=100, shape=len(self.tasks)))
 
         instance_id = str(uuid.uuid4().hex)[:self.id_len]
         instance = Instance(instance_id)
         self.instances[instance_id] = instance
         return instance
 
-    def action_space(self, instance_id):
-        return spaces.Tuple(
-            spaces.Box(low=0, high=self.action_space_size, shape=1),
-            spaces.Box(low=-180, high=180, shape=1))
-
     def observation_space(self):
         return NotImplementedError
 
-    def reward_space(self):
-        return NotImplementedError
-
-    @property
-    def action_space_size(self):
-        return len(self.affordances)
