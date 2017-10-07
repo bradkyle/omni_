@@ -99,7 +99,7 @@ register(
 
 sources = [
     {"BlockChainInfo", },
-    {"Etherchain", },
+    {"Etherchain" },
 
 ]
 

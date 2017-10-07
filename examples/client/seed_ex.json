@@ -1,0 +1,122 @@
+{
+  "interfaces":[
+  {
+    "id": "GeminiSandbox-v0",
+    "api_key": "SQ2QIbTEEO8MUF1wU5VS",
+    "api_secret": "3tY7f1pib5hThBzm65hAmz7xocdM"
+  },
+  {
+    "id": "Gemini-v0",
+    "enabled": false,
+    "api_key": "",
+    "api_secret": ""
+  },
+  {
+    "id": "Poloniex-v0",
+    "enabled": false,
+    "mode":"public",
+    "api_key": "",
+    "api_secret": ""
+  },
+  {
+    "id": "Bittrex-v0",
+    "enabled": false,
+    "mode":"public",
+    "api_key": "",
+    "api_secret": ""
+  },
+  {
+    "id": "CoinOne-v0",
+    "enabled": false,
+    "mode":"public",
+    "api_key": "",
+    "api_secret": ""
+  },
+  {
+    "id": "Bithumb-v0",
+    "enabled": false,
+    "mode":"public",
+    "api_key": "",
+    "api_secret": ""
+  },
+  {
+    "id": "Bitfinex-v0",
+    "enabled": false,
+    "mode":"public",
+    "api_key": "",
+    "api_secret": ""
+  },
+  {
+    "id": "HitBTC-v0",
+    "enabled": false,
+    "mode":"public",
+    "api_key": "",
+    "api_secret": ""
+  },
+  {
+    "id": "Kraken-v0",
+    "enabled": false,
+    "mode":"public",
+    "api_key": "",
+    "api_secret": ""
+  },
+  {
+    "id": "Coinbase-v0",
+    "enabled": false,
+    "mode":"public",
+    "api_key": "",
+    "api_secret": ""
+  },
+  {
+    "id": "Binance-v0",
+    "enabled": false,
+    "mode":"public",
+    "api_key": "",
+    "api_secret": ""
+  },
+  {
+    "id": "Bitstamp-v0",
+    "enabled": false,
+    "mode":"public",
+    "api_key": "",
+    "api_secret": ""
+  },
+  {
+    "id": "Quione-v0",
+    "enabled": false,
+    "mode":"public",
+    "api_key": "",
+    "api_secret": ""
+  },
+  {
+    "id": "Bitstamp-v0",
+    "enabled": false,
+    "api_key": "",
+    "api_secret": ""
+  },
+  {
+    "id": "PyExchangeOne-v0",
+    "enabled": false,
+    "api_key": "",
+    "api_secret": ""
+  },
+  {
+    "id": "PyExchangeTwo-v0",
+    "enabled": false,
+    "api_key": "",
+    "api_secret": ""
+  },
+  {
+    "id": "PyExchangeThree-v0",
+    "enabled": false,
+    "api_key": "",
+    "api_secret": ""
+  },
+  {
+    "id": "PyExchangeFour-v0",
+    "enabled": false,
+    "api_key": "",
+    "api_secret": ""
+  }
+  ]
+}

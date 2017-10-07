@@ -1,0 +1,33 @@
+{
+  "interfaces":[
+  {
+    "id": "GeminiSandbox-v0",
+    "api_key": "SQ2QIbTEEO8MUF1wU5VS",
+    "api_secret": "3tY7f1pib5hThBzm65hAmz7xocdM"
+  },
+  {
+    "id": "PyExchangeOne-v0",
+    "enabled": false,
+    "api_key": "",
+    "api_secret": ""
+  },
+  {
+    "id": "PyExchangeTwo-v0",
+    "enabled": false,
+    "api_key": "",
+    "api_secret": ""
+  },
+  {
+    "id": "PyExchangeThree-v0",
+    "enabled": false,
+    "api_key": "",
+    "api_secret": ""
+  },
+  {
+    "id": "PyExchangeFour-v0",
+    "enabled": false,
+    "api_key": "",
+    "api_secret": ""
+  }
+  ]
+}
