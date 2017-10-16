@@ -1,31 +1,15 @@
 import numpy as np
 import requests
-from omni.utils import closer
+from omni.error import DoubleWrapperError
 
-char_embedding = "abcdefghijklmnopqrstuvwxyz0123456789-,;.!?:'\"/\\|_@#$%^&*~`+-=<>()[]{}\n"
-padding_char = " "
-line_length = 1024
 
-interface_closer = closer.Closer()
+
 
 class Response():
     def __init__(self):
         raise NotImplemented
 
-    def encode_chars(self, observation):
-        """
-        Encodes the observation response with a char embedding
-        that is the same across all instances.
-        """
-        result = []
-        for line in observation:
-            line = list(line)
-            if len(line) > line_length:
-                line = line[-line_length:]
-            num_padding = line_length - len(line)
-            output_line = line + [padding_char] * num_padding
-            result.append(np.array([char_embedding.find(char) for char in output_line], dtype=np.int8))
-        return result
+
 
 
 class Interface():
@@ -55,13 +39,32 @@ class Interface():
 
     # Override in ALL subclasses
     def _invoke(self, params): raise NotImplementedError
+    def _close(self): raise NotImplementedError
 
     def invoke(self, params):
         return self._invoke(params)
 
+    def close(self):
+        self._close()
+
     def cache(self):
         return NotImplemented
 
+    @property
+    def spec(self):
+        return self._spec
+
+    @property
+    def unwrapped(self):
+        """Completely unwrap this env.
+
+        Returns:
+            gym.Env: The base non-wrapped gym.Env instance
+        """
+        return self
+
+    def __del__(self):
+        self.close()
 
 
 class Space(object):
@@ -122,7 +125,7 @@ class Wrapper(Interface):
         while True:
             if isinstance(env, Wrapper):
                 if env.class_name() == self.class_name():
-                    raise error.DoubleWrapperError("Attempted to double wrap with Wrapper: {}".format(self.__class__.__name__))
+                    raise DoubleWrapperError("Attempted to double wrap with Wrapper: {}".format(self.__class__.__name__))
                 env = env.env
             else:
                 break

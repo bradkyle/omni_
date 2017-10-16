@@ -1,0 +1,6 @@
+omniverse.egg-info/PKG-INFO
+omniverse.egg-info/SOURCES.txt
+omniverse.egg-info/dependency_links.txt
+omniverse.egg-info/not-zip-safe
+omniverse.egg-info/requires.txt
+omniverse.egg-info/top_level.txt

@@ -1,0 +1,10 @@
+Metadata-Version: 1.0
+Name: omniverse
+Version: 0.0.1
+Summary: The Omniverse: An elegant and dynamic implementation of agent application and environment dispatching for live and simulated multiplexing of actions, state and rewards.
+Home-page: https://github.com/bradkyle/omni
+Author: Brad
+Author-email: bradkyleduncan@gmail.com
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN

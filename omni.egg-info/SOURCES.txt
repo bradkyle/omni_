@@ -1,0 +1,6 @@
+omni.egg-info/PKG-INFO
+omni.egg-info/SOURCES.txt
+omni.egg-info/dependency_links.txt
+omni.egg-info/not-zip-safe
+omni.egg-info/requires.txt
+omni.egg-info/top_level.txt

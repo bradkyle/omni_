@@ -1,11 +1,12 @@
 from .registration import register
 
+
 # Crypto Exchanges
 # --------------------------------------------------------------------------------------------------------------------->
 
 register(
     enabled = False,
-    id = 'Gemini-I0',
+    id = 'Gemini-v0',
     entry_point='omni.interfaces.crypto_exchanges:GeminiInterface',
     kwargs={
         'sandbox':False,
@@ -24,12 +25,6 @@ register(
     id = 'Bitfinex-v0',
     entry_point='omni.interfaces.crypto_exchanges:BitfinexInterface',
 )
-
-register(
-    id = 'Bitfinex-v0',
-    entry_point='omni.interfaces.crypto_exchanges:BitfinexInterface',
-)
-
 
 # PyExchange
 # --------------------------------------------------------------------------------------------------------------------->
@@ -78,7 +73,7 @@ register(
 # --------------------------------------------------------------------------------------------------------------------->
 
 register(
-    id='PyWalletOne',
+    id='PyWalletOne-v0',
     entry_point='omni.envs.interfaces:PyWalletOneInterface',
     kwargs={
         'url':"http://pywallet:1000",
@@ -86,7 +81,7 @@ register(
 )
 
 register(
-    id='PyWalletTwo',
+    id='PyWalletTwo-v0',
     entry_point='omni.envs.interfaces:PyWalletTwoInterface',
     kwargs={
         'url':"http://pywallet:2000",
@@ -94,7 +89,7 @@ register(
 )
 
 register(
-    id='PyWalletThree',
+    id='PyWalletThree-v0',
     entry_point='omni.envs.interfaces:PyWalletThreeInterface',
     kwargs={
         'url':"http://pywallet:2000",
