@@ -1,3 +1,5 @@
+from omni.interfaces.util import invoke
+
 """ Client for the Gemini Exchange REST API.
 
    Full API docs are here: https://docs.gemini.com
@@ -42,17 +44,6 @@ def _get_next_order_id():
 def _get_nonce():
     return time.time() * 1000
 
-#todo outsource this function to a common file
-def _handle_response(request, response):
-    """ Handles all responses from the API. Checks the return HTTP status code and formats the response in JSON. """
-    status_code = str(response.status_code)
-
-    if not status_code.startswith('2'):
-        print("hello")
-    else:
-        return response.json()
-
-
 def _invoke_api(endpoint, payload, params=None, pub=True, keys=None):
     """ Sends the request to the Gemini Exchange API.
 
@@ -87,12 +78,12 @@ def _invoke_api(endpoint, payload, params=None, pub=True, keys=None):
         # build a request object in case there's an error so we can echo it
         request = {'payload': payload, 'headers': headers, 'url': url}
 
-        response = requests.post(url, headers=headers)
+        return invoke("POST", url=url, headers=headers, request=request)
     else:
         request = {'payload': payload, 'url': url}
-        response = requests.get(url, params=params)
+        return invoke("GET", url=url, params=params, request=request)
 
-    return _handle_response(request, response)
+
 
 
 # Public API methods
@@ -358,6 +349,41 @@ def get_balance(key_set):
 
     return _invoke_api(endpoint, payload, keys=key_set, pub=False)
 
+
+
+
+# Tasks
+# =====================================================================================================================>
+
+# todo must cache
+def profit_over_time(keys):
+    session = requests.Session()
+
+    endpoint ='/balances'
+    url = BASE_URI + endpoint
+    payload = {
+        'request': API_VERSION + endpoint,
+        'nonce': _get_nonce()
+    }
+
+    if keys is None:
+        raise Exception
+
+    # base64 encode the payload
+    payload = str.encode(json.dumps(payload))
+    b64 = base64.b64encode(payload)
+
+    # sign the requests
+    signature = hmac.new(str.encode(keys['private']), b64, hashlib.sha384).hexdigest()
+
+    headers = {
+        'Content-Type': 'text/plain',
+        'X-GEMINI-APIKEY': keys['public'],
+        'X-GEMINI-PAYLOAD': b64,
+        'X-GEMINI-SIGNATURE': signature
+    }
+
+    session.post(url=url,headers=headers)
 
 
 

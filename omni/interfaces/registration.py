@@ -26,13 +26,17 @@ class Affordance():
     def _info(self):
         return NotImplemented
 
-class Registry():
+class AffordanceRegistry():
     def __init__(self):
         self.affordances = {}
+        self.id_counter = 0
 
     def register(self, entry_point, **kwargs):
-        id = self._newid()
-        self.affordances[id] = Affordance(id, entry_point, **kwargs)
+        self.affordances[self.id_counter] = Affordance(id, entry_point, **kwargs)
+        self.id_counter += 1
+
+    def lookup(self, id):
+        return self._find(id)
 
     def invoke(self, id, *params):
         affordance = self._find(id)
@@ -44,15 +48,35 @@ class Registry():
         else:
             return self.affordances[id]
 
-    def _newid(self):
-        counter = itertools.count()
-        newid = next(counter)
-        return newid
+    def all(self):
+        return self.affordances.values()
 
-    def list_all(self):
-        return NotImplemented
-
-registry = Registry()
+affordance_registry = AffordanceRegistry()
 
 def register(entry_point, **kwargs):
-    registry.register(entry_point, **kwargs)
+    affordance_registry.register(entry_point, **kwargs)
+
+class Task():
+    def __init__(self, invoker, per_step=None, **kwargs):
+        self.per_step = per_step
+        self.invoker = invoker
+        self.kwargs = kwargs
+
+    def __call__(self):
+       return self.invoker(self.kwargs)
+
+class TaskRegistry():
+    def __init__(self):
+        self.tasks = {}
+
+    def task(self, entry_point, **kwargs):
+        return NotImplemented
+
+    def aggregate(self):
+        return NotImplemented
+
+
+task_registry = TaskRegistry()
+
+def task(entry_point, **kwargs):
+    task_registry.task(entry_point, **kwargs)
