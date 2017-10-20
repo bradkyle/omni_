@@ -1,59 +1,24 @@
 import json
 import requests
+import requests_cache
+
 from omni.interfaces.util import invoke
 
 BASE_URL = 'https://api.coinmarketcap.com/v1/'
 
+coinmarketcap_session = requests_cache.CachedSession(cache_name="coinmarketcap", expire_after=30, backend='sqlite')
 
-def get_all_tickers(convert=None, limit=None):
+def get_all_tickers(input):
     # todo convert integer repr [0.1] into limit
+    params = {}
+    params['convert'] = input.convert
+    #params['limit'] = limit
 
-    """
-    Returns a dict containing one/all the currencies
-    Optional parameters:
-    (int) limit - only returns the top limit results.
-    (string) convert - return price, 24h volume, and market cap in terms of another currency. Valid values are:
-    "AUD", "BRL", "CAD", "CHF", "CNY", "EUR", "GBP", "HKD", "IDR", "INR", "JPY", "KRW", "MXN", "RUB"
-    """
+    return invoke("GET", url=BASE_URL+'ticker/', params=params, session=coinmarketcap_session)
+
+def get_stats(input):
 
     params = {}
-    if convert:
-        params['convert'] = convert
+    params['convert'] = input.convert
 
-    if limit:
-        params['limit'] = limit
-
-    return invoke("GET", url=BASE_URL+'ticker/', params=params)
-
-def get_ticker(currency="", convert=None, limit=None):
-    """
-    Returns a dict containing one/all the currencies
-    Optional parameters:
-    (int) limit - only returns the top limit results.
-    (string) convert - return price, 24h volume, and market cap in terms of another currency. Valid values are:
-    "AUD", "BRL", "CAD", "CHF", "CNY", "EUR", "GBP", "HKD", "IDR", "INR", "JPY", "KRW", "MXN", "RUB"
-    """
-
-    params = {}
-    if convert:
-        params['convert'] = convert
-
-    if limit:
-        params['limit'] = limit
-
-    return invoke("GET", url=BASE_URL + 'ticker/' + currency, params=params)
-
-
-def get_stats(convert = None):
-    """
-    Returns a dict containing cryptocurrency statistics.
-    Optional parameters:
-    (string) convert - return 24h volume, and market cap in terms of another currency. Valid values are:
-    "AUD", "BRL", "CAD", "CHF", "CNY", "EUR", "GBP", "HKD", "IDR", "INR", "JPY", "KRW", "MXN", "RUB"
-    """
-
-    params = {}
-    if convert:
-        params['convert'] = convert
-
-    return invoke("GET", url=BASE_URL + 'global/', params=params)
+    return invoke("GET", url=BASE_URL + 'global/', params=params, session=coinmarketcap_session)

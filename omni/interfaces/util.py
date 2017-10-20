@@ -1,33 +1,36 @@
 import json
-from flask import jsonify
 import numpy as np
 import requests
 import time
-from omni.config import LINE_LENGTH,PADDING_CHAR,CHAR_EMBEDDING, BAD_REQUEST_PENALTY, SAVE_REQUEST
+from omni.config import LINE_LENGTH,PADDING_CHAR,CHAR_EMBEDDING, BAD_REQUEST_PENALTY, SAVE_REQUEST, ACTION_LOW, ACTION_HIGH
 
 f = open("./store.json", "a+")
 
-def invoke(method, url, headers=None, body=None, params=None, cached=False, cache_length=None, request=None):
-    session = requests.Session()
+def invoke(method, url, headers=None, body=None, params=None, payload=None, session=None, encode=True):
 
-    # todo if url host is unique create new, if url
+    if session is None:
+        session = requests.Session()
+
+    # todo caching requests
+    # todo penalty for response size
 
     req = requests.Request(method, url, params=params, headers=headers, data=body)
     prepared = req.prepare()
 
     if SAVE_REQUEST:
-        request = {}
-        request["instance"] = []
-        request["file"] = '{}\n{}\n{}\n\n{}'.format(
-            '-----------START-----------',
-            prepared.method + ' ' + prepared.url,
-            '\n'.join('{}: {}'.format(k, v) for k, v in prepared.headers.items()),
-            prepared.body,
-        )
-        request["time"] = time.time()
-        f.write(jsonify(request))
+        r = {}
+        r["method"] = prepared.method
+        r["url"] = prepared.url
+        r["headers"] = {}
+        for k, v in prepared.headers.items():
+            r["headers"][str(k)] = str(v)
+        r["body"] = prepared.body
+        r["time"] = time.time()
+        if payload:
+            r["payload"] = payload
+        json_request = json.dumps(r)
+        f.write(json_request)
 
-    #response_object = session.get(url, params=params, timeout=DEFAULT_TIMEOUT)
     response_object = session.send(prepared)
 
     try:
@@ -40,19 +43,22 @@ def invoke(method, url, headers=None, body=None, params=None, cached=False, cach
     except requests.exceptions.RequestException as e:
         return e
 
-    observation = encode(response)
+    if encode:
+        observation = encode_response(response)
+    else:
+        observation = response
 
     return observation, penalty
 
-# todo implement in cython
-def encode(observation):
+# todo penalty for size of data
+def encode_response(observation):
     """
     Encodes the observation response with a char embedding
     that is the same across all instances.
     """
     result = []
     for line in observation:
-        line = list(line)
+        line = list(str(line))
         if len(line) > LINE_LENGTH:
             line = line[-LINE_LENGTH:]
         num_padding = LINE_LENGTH - len(line)
@@ -64,4 +70,8 @@ def encode(observation):
 
 def convert(input, condition, output):
     """takes in a float int and turns it into a value based upon a second parameter"""
+
+
+
+
     return NotImplemented

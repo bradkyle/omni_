@@ -42,3 +42,19 @@ def undo_logger_setup():
     for logger in _extra_loggers:
         logger.setLevel(logging.NOTSET)
 
+LINE_LENGTH = 1024  # todo change
+PADDING_CHAR = "0"
+CHAR_EMBEDDING = "abcdefghijklmnopqrstuvwxyz0123456789-,;.!?:'\"/\\|_@#$%^&*~`+-=<>()[]{}\n"
+
+def char_length():
+    return len(CHAR_EMBEDDING)
+
+
+ACTION_HIGH = 100
+ACTION_LOW = -100
+
+
+DEFAULT_TIMEOUT = 120
+BAD_REQUEST_PENALTY = 20
+MAX_PARAMS = 10
+SAVE_REQUEST = True

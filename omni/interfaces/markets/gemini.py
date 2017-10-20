@@ -1,41 +1,19 @@
-from omni.interfaces.util import invoke
-
-""" Client for the Gemini Exchange REST API.
-
-   Full API docs are here: https://docs.gemini.com
-   """
+from omni.interfaces.util import invoke, encode_response
 import base64
 import hashlib
 import hmac
 import json
 import time
-
+from omni.interfaces.markets.market_base import market_base
+from omni.interfaces.registration import register
 import requests
+import requests_cache
 
 API_VERSION = '/v1'
-
-gemini_pairs = ["btcusd", "ethusd", "ethbtc"]
-gemini_assets = ["btc", "usd", "eth"]
-sides = ["buy", "sell"]
-gemini_options = ["maker-or-cancel", "immediate-or-cancel", "auction-only"]
-side = "buy"
-pair = "btcusd"
-asset = "btc"
-option = "maker-or-cancel"
-keys = [
-    {"private": "3go1mGK4QSJkpFMdxtadRM6e9NoM", "public": "FdAVXfnhsnGwiEOOlDJY"},  # smithmalcolm46@gmail.com
-    {"private": "u8rGPS1AvbWNqreT2U9rT4xAPPk", "public": "QzeR2u1AZuf5S6lXWrfo"},  # bradkyleduncan@gmail.com
-    {"private": "26NheKRMDt6q24NFUASYVDYE4KPw", "public": "meMqYdKRQsxZDjOU6MRn"},  # wilnatfor@gmail.com
-]
-
-key_set = {"private": "26NheKRMDt6q24NFUASYVDYE4KPw", "public": "meMqYdKRQsxZDjOU6MRn"}
-
 BASE_URI = "https://api.sandbox.gemini.com" + API_VERSION
 
 
-# Private API methods
-# -------------------
-def _get_order_count():
+def _order_count():
     return 1
 
 def _get_next_order_id():
@@ -44,7 +22,8 @@ def _get_next_order_id():
 def _get_nonce():
     return time.time() * 1000
 
-def _invoke_api(endpoint, payload, params=None, pub=True, keys=None):
+
+def _invoke_api(endpoint, payload, params=None, pub=True, keys=None, encode=True):
     """ Sends the request to the Gemini Exchange API.
 
         Args:
@@ -54,8 +33,13 @@ def _invoke_api(endpoint, payload, params=None, pub=True, keys=None):
             pub(bool, optional):    Boolean value identifying a Public API call (True) or Private API call (False)
     """
 
+    public_session = requests_cache.CachedSession(cache_name="gemini_public", expire_after=30, backend='sqlite')
+    private_session = requests_cache.CachedSession(cache_name="gemini_private", expire_after=30,
+                                                        backend='sqlite')
+
     url = BASE_URI + endpoint
 
+    load = payload
 
     if pub == False:
         if keys is None:
@@ -74,14 +58,9 @@ def _invoke_api(endpoint, payload, params=None, pub=True, keys=None):
             'X-GEMINI-PAYLOAD': b64,
             'X-GEMINI-SIGNATURE': signature
         }
-
-        # build a request object in case there's an error so we can echo it
-        request = {'payload': payload, 'headers': headers, 'url': url}
-
-        return invoke("POST", url=url, headers=headers, request=request)
+        return invoke("POST", url=url, headers=headers, payload=load, session=private_session, encode=encode)
     else:
-        request = {'payload': payload, 'url': url}
-        return invoke("GET", url=url, params=params, request=request)
+        return invoke("GET", url=url, params=params, payload=load, session=public_session, encode=encode)
 
 
 
@@ -89,7 +68,7 @@ def _invoke_api(endpoint, payload, params=None, pub=True, keys=None):
 # Public API methods
 # ------------------
 # State
-def get_symbols():
+def get_symbols(input):
     """ https://docs.gemini.com/rest-api/#symbols """
     endpoint = '/symbols'
 
@@ -101,9 +80,9 @@ def get_symbols():
     return _invoke_api(endpoint, payload, pub=True)
 
 
-def get_ticker(symbol):
+def get_ticker(input):
     """ https://docs.gemini.com/rest-api/#ticker """
-    endpoint = '/pubticker/' + symbol
+    endpoint = '/pubticker/' + input.symbol
 
     payload = {
         'request': API_VERSION + endpoint,
@@ -113,9 +92,9 @@ def get_ticker(symbol):
     return _invoke_api(endpoint, payload, pub=True)
 
 
-def get_order_book(symbol):
+def get_order_book(input):
     """ https://docs.gemini.com/rest-api/#current-order-book """
-    endpoint = '/book/' + symbol
+    endpoint = '/book/' + input.symbol
 
     payload = {
         'request': API_VERSION + endpoint,
@@ -125,25 +104,15 @@ def get_order_book(symbol):
     return _invoke_api(endpoint, payload, pub=True)
 
 
-def get_trade_history(symbol, since=None, limit_trades=None, include_breaks=None):
+def get_trade_history(input):
 
 
-    # todo convert integer repr [0.1, 0.666, 0.5454] into since, limit_trades, include_breaks
-
-    """ https://docs.gemini.com/rest-api/#trade-history """
-
-    # build URL parameters
     params = {}
-    if since:
-        params['since'] = since
+    # params['since'] = since
+    # params['limit_trades'] = limit_trades
+    # params['include_breaks'] = include_breaks
 
-    if limit_trades:
-        params['limit_trades'] = limit_trades
-
-    if include_breaks:
-        params['include_breaks'] = include_breaks
-
-    endpoint = '/trades/' + symbol
+    endpoint = '/trades/' + input.symbol
 
     payload = {
         'request': API_VERSION + endpoint,
@@ -154,9 +123,9 @@ def get_trade_history(symbol, since=None, limit_trades=None, include_breaks=None
 
 
 
-def get_current_auction(symbol):
+def get_current_auction(input):
     """ https://docs.gemini.com/rest-api/#current-aucion """
-    endpoint = '/auction/' + symbol
+    endpoint = '/auction/' + input.symbol
 
     payload = {
         'request': API_VERSION + endpoint,
@@ -167,24 +136,14 @@ def get_current_auction(symbol):
 
 
 
-def get_auction_history(symbol, since=None, limit_auction_results=None, include_indicative=None):
+def get_auction_history(input):
 
-    # todo convert integer repr [0.1, 0.666, 0.5454] into since, limit_auction_results, include_indicative
-
-    """ https://docs.gemini.com/rest-api/#auction-history """
-
-    # build URL parameters
     params = {}
-    if since:
-        params['since'] = since
+    # params['since'] = since
+    # params['limit_auction_results'] = limit_auction_results
+    # params['include_indicative'] = include_indicative
 
-    if limit_auction_results:
-        params['limit_auction_results'] = limit_auction_results
-
-    if include_indicative:
-        params['include_indicative'] = include_indicative
-
-    endpoint = '/auction/' + symbol + '/history'
+    endpoint = '/auction/' + input.symbol + '/history'
 
     payload = {
         'request': API_VERSION + endpoint,
@@ -199,8 +158,8 @@ def get_auction_history(symbol, since=None, limit_auction_results=None, include_
 # https://docs.gemini.com/rest-api/#order-status
 # ----------------------------------------------
 # State
-def get_active_orders(key_set):
-    """ https://docs.gemini.com/rest-api/#get-active-orders """
+def get_active_orders(input):
+
     endpoint = '/orders'
 
     payload = {
@@ -208,13 +167,11 @@ def get_active_orders(key_set):
         'nonce': _get_nonce()
     }
 
-    return _invoke_api(endpoint, payload, keys=key_set, pub=False)
+    return _invoke_api(endpoint, payload, keys=input.key_set, pub=False)
 
 
 
-def get_order_status(key_set, order_id):
-
-    # todo convert integer repr [0.5454] to order_id
+def get_order_status(input):
 
     """ https://docs.gemini.com/rest-api/#order-status """
     endpoint = '/order/status'
@@ -222,15 +179,15 @@ def get_order_status(key_set, order_id):
     payload = {
         'request': API_VERSION + endpoint,
         'nonce': _get_nonce(),
-        'order_id': order_id
+        'order_id': input.order_id
     }
 
-    return _invoke_api(endpoint, payload, keys=key_set, pub=False)
+    return _invoke_api(endpoint, payload, keys=input.key_set, pub=False)
 
 
 
-def get_trade_volume(key_set):
-    """ https://docs.gemini.com/rest-api/#get-trade-volume """
+def get_trade_volume(input):
+
     endpoint = '/tradevolume'
 
     payload = {
@@ -238,76 +195,70 @@ def get_trade_volume(key_set):
         'nonce': _get_nonce()
     }
 
-    return _invoke_api(endpoint, payload, keys=key_set, pub=False)
+    return _invoke_api(endpoint, payload, keys=input.key_set, pub=False)
 
 
 
-def get_past_trades(key_set, symbol, limit_trades=50, timestamp=None):
+def get_past_trades(input):
 
-    # todo convert integer repr [0.5454, 0.65656 ...] to limit_trades (max=500), and timestamp
-
-    """ https://docs.gemini.com/rest-api/#get-past-trades """
     endpoint = '/mytrades'
 
     payload = {
         'request': API_VERSION + endpoint,
-        'symbol': symbol,
+        'symbol': input.symbol,
         'nonce': _get_nonce(),
         'limit_trades': limit_trades,
         'timestamp': timestamp
     }
 
-    return _invoke_api(endpoint, payload, keys=key_set, pub=False)
+    return _invoke_api(endpoint, payload, keys=input.key_set, pub=False)
 
 
 
 # Order Placement API
 # https://docs.gemini.com/rest-api/#new-order
 # -------------------------------------------
-# Action
-def new_order(key_set, client_order_id, symbol, amount, price, side, options=None):
 
-    # todo Automatic order id maker
-    # todo convert integer repr [0.5454, 0.65656 ...] to amount and price
+def new_order(input):
 
-    """ https://docs.gemini.com/rest-api/#new-order """
+    client_order_id = str(_get_next_order_id())
+    price = input.args[0] * 1e5
+    amount = input.args[0] * 1000.00
     endpoint = '/order/new'
 
     payload = {
         'request': API_VERSION + endpoint,
         'nonce': _get_nonce(),
         'client_order_id': client_order_id,
-        'symbol': symbol,
+        'symbol': input.symbol,
         'amount': amount,
         'price': price,
-        'side': side,
+        'side': input.side,
         'type': 'exchange limit',
-        'options': options
+        'options': [input.options]
     }
 
-    return _invoke_api(endpoint, payload, keys=key_set, pub=False)
+    response = _invoke_api(endpoint, payload, keys=input.key_set, pub=False, encode=False)
 
+    new_order_id = response[0]["order_id"]
+    register(entry_point='omni.interfaces.markets.gemini:get_order_status', key_set=input.key_set, order_id=new_order_id)
+    register(entry_point='omni.interfaces.markets.gemini:cancel_order', key_set=input.key_set, order_id=new_order_id)
 
+    return encode_response(response)
 
-def cancel_order(key_set, order_id):
+def cancel_order(input):
 
-    # todo convert integer repr [0.5454 ...] to order_id
-
-    """ https://docs.gemini.com/rest-api/#cancel-order """
     endpoint = '/order/cancel'
 
     payload = {
         'request': API_VERSION + endpoint,
         'nonce': _get_nonce(),
-        'order_id': order_id
+        'order_id': input.order_id
     }
 
-    return _invoke_api(endpoint, payload, keys=key_set, pub=False)
+    return _invoke_api(endpoint, payload, keys=input.key_set, pub=False)
 
-
-
-
-def cancel_session_orders(key_set):
+def cancel_session_orders(input):
     """ https://docs.gemini.com/rest-api/#cancel-all-session-orders """
     endpoint = '/order/cancel/session'
 
@@ -316,12 +267,9 @@ def cancel_session_orders(key_set):
         'nonce': _get_nonce()
     }
 
-    return _invoke_api(endpoint, payload, keys=key_set, pub=False)
+    return _invoke_api(endpoint, payload, keys=input.key_set, pub=False)
 
-
-
-
-def cancel_all_orders(key_set):
+def cancel_all_orders(input):
     """ https://docs.gemini.com/rest-api/#cancel-all-active-orders """
     endpoint = '/order/cancel/all'
 
@@ -330,16 +278,16 @@ def cancel_all_orders(key_set):
         'nonce': _get_nonce()
     }
 
-    return _invoke_api(endpoint, payload, keys=key_set, pub=False)
-
-
-
+    return _invoke_api(endpoint, payload, keys=input.key_set, pub=False)
 
 # Fund Management API's
 # https://docs.gemini.com/rest-api/#get-available-balances
 # --------------------------------------------------------
-def get_balance(key_set):
+def get_balance(input):
     """ https://docs.gemini.com/rest-api/#get-available-balances """
+
+    cached = True
+
     endpoint = '/balances'
 
     payload = {
@@ -347,18 +295,12 @@ def get_balance(key_set):
         'nonce': _get_nonce()
     }
 
-    return _invoke_api(endpoint, payload, keys=key_set, pub=False)
-
-
-
+    return _invoke_api(endpoint, payload, keys=input.key_set, pub=False)
 
 # Tasks
 # =====================================================================================================================>
 
-# todo must cache
-def profit_over_time(keys):
-    session = requests.Session()
-
+def profit(key_set):
     endpoint ='/balances'
     url = BASE_URI + endpoint
     payload = {
@@ -366,7 +308,7 @@ def profit_over_time(keys):
         'nonce': _get_nonce()
     }
 
-    if keys is None:
+    if key_set is None:
         raise Exception
 
     # base64 encode the payload
@@ -374,18 +316,76 @@ def profit_over_time(keys):
     b64 = base64.b64encode(payload)
 
     # sign the requests
-    signature = hmac.new(str.encode(keys['private']), b64, hashlib.sha384).hexdigest()
+    signature = hmac.new(str.encode(key_set['private']), b64, hashlib.sha384).hexdigest()
 
     headers = {
         'Content-Type': 'text/plain',
-        'X-GEMINI-APIKEY': keys['public'],
+        'X-GEMINI-APIKEY': key_set['public'],
         'X-GEMINI-PAYLOAD': b64,
         'X-GEMINI-SIGNATURE': signature
     }
 
-    session.post(url=url,headers=headers)
+    response = requests.post(url=url,headers=headers)
+    json_data = json.loads(response.text)
 
+    profits = []
+    for balance in json_data:
+        balance_value = 0
+        if balance["currency"] == "BTC":
+            balance_value =  market_base.calc_value("btc", balance["available"])
 
+        elif balance["currency"] == "ETH":
+            balance_value = market_base.calc_value("eth", balance["available"])
 
+        elif balance["currency"] == "USD":
+            balance_value = balance["available"]
 
+        id = balance["currency"] + balance["type"] + key_set["public"]
+        profits.append(market_base.profit(id, balance_value))
 
+    return profits
+
+def profit_over_time(key_set):
+    endpoint ='/balances'
+    url = BASE_URI + endpoint
+    payload = {
+        'request': API_VERSION + endpoint,
+        'nonce': _get_nonce()
+    }
+
+    if key_set is None:
+        raise Exception
+
+    # base64 encode the payload
+    payload = str.encode(json.dumps(payload))
+    b64 = base64.b64encode(payload)
+
+    # sign the requests
+    signature = hmac.new(str.encode(key_set['private']), b64, hashlib.sha384).hexdigest()
+
+    headers = {
+        'Content-Type': 'text/plain',
+        'X-GEMINI-APIKEY': key_set['public'],
+        'X-GEMINI-PAYLOAD': b64,
+        'X-GEMINI-SIGNATURE': signature
+    }
+
+    response = requests.post(url=url,headers=headers)
+    json_data = json.loads(response.text)
+
+    profits = []
+    for balance in json_data:
+        balance_value = 0
+        if balance["currency"] == "BTC":
+            balance_value =  market_base.calc_value("btc", balance["available"])
+
+        elif balance["currency"] == "ETH":
+            balance_value = market_base.calc_value("eth", balance["available"])
+
+        elif balance["currency"] == "USD":
+            balance_value = balance["available"]
+
+        id = balance["currency"] + balance["type"] + key_set["public"]
+        profits.append(market_base.profit_over_time(id, balance_value))
+
+    return profits

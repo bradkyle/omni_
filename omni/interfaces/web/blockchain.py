@@ -1,34 +1,35 @@
+import requests_cache
+
 from omni.interfaces.util import invoke
 
-chart = "total-bitcoins"
 BASE_URI = "https://api.blockchain.info"
 
-def get_chart(chart, timespan=None, rollingAverage=None, start=None, sampled=None):
+charts_session = requests_cache.CachedSession(cache_name="blockchain_charts", expire_after=84000, backend='sqlite')
+
+def get_chart(input):
+
+    # chart, timespan=None, rollingAverage=None, start=None, sampled=None
 
     params = {}
-    if timespan:
-        params['timespan'] = timespan
 
-    if rollingAverage:
-        params['rollingAverage'] = rollingAverage
+    # params['timespan'] =
+    # params['rollingAverage'] =
+    # params['start'] =
+    # params['include_breaks'] =
 
-    if start:
-        params['start'] = start
+    url = "https://api.blockchain.info/charts/" + input.chart
+    return invoke("GET", url, params=params, session=charts_session)
 
-    if sampled:
-        params['include_breaks'] = sampled
 
-    url = "https://api.blockchain.info/charts/" + chart
-    return invoke("GET", url, params=params)
-
-def get_ticker():
+info_session = requests_cache.CachedSession(cache_name="blockchain_info", expire_after=900, backend='sqlite')
+def get_ticker(input):
     url = BASE_URI+"/ticker"
-    return invoke("GET", url)
+    return invoke("GET", url, session=info_session)
 
-def get_stats():
+def get_stats(input):
     url = BASE_URI+"/stats"
-    return invoke("GET", url)
+    return invoke("GET", url, session=info_session)
 
-def get_pools():
+def get_pools(input):
     url = BASE_URI+"/pools"
-    return invoke("GET", url)
+    return invoke("GET", url, session=info_session)

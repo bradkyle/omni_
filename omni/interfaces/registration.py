@@ -8,23 +8,39 @@ def load(name):
     result = entry_point.load(False)
     return result
 
+
+class Input():
+    def __init__(self, **kwargs):
+        for key, value in kwargs.items():
+            setattr(self, key, value)
+
+        self.args = None
+
+
+# Affordance
+# --------------------------------------------------------------------------------------------------------------------->
+
 class Affordance():
-    def __init__(self, id, entry_point=None, cached=False, cache_length = None, **kwargs):
+    def __init__(self, id, entry_point=None, **kwargs):
         self.id = id
+
+        if entry_point is None:
+            raise Exception
+
         self.entry_point = entry_point
-        self.cached = cached
-        self.cache_length = cache_length
-
-        invoker = load(self.entry_point)
-
-        self.logic = partial(invoker, **kwargs)
+        self.invoker = load(self.entry_point)
+        self.input = Input(**kwargs)
 
     def __call__(self, *params):
-        return self.logic(*params)
+        self.input.args = params
+        return self.invoker(self.input)
 
     @property
     def _info(self):
-        return NotImplemented
+        return {
+            "index": self.id,
+            "entry_point": self.entry_point
+        }
 
 class AffordanceRegistry():
     def __init__(self):
@@ -32,15 +48,11 @@ class AffordanceRegistry():
         self.id_counter = 0
 
     def register(self, entry_point, **kwargs):
-        self.affordances[self.id_counter] = Affordance(id, entry_point, **kwargs)
+        self.affordances[self.id_counter] = Affordance(self.id_counter, entry_point, **kwargs)
         self.id_counter += 1
 
     def lookup(self, id):
         return self._find(id)
-
-    def invoke(self, id, *params):
-        affordance = self._find(id)
-        observations, rewards, done, info = affordance(*params)
 
     def _find(self, id):
         if not id in self.affordances:
@@ -56,27 +68,82 @@ affordance_registry = AffordanceRegistry()
 def register(entry_point, **kwargs):
     affordance_registry.register(entry_point, **kwargs)
 
-class Task():
-    def __init__(self, invoker, per_step=None, **kwargs):
-        self.per_step = per_step
-        self.invoker = invoker
-        self.kwargs = kwargs
+# Tasks
+# --------------------------------------------------------------------------------------------------------------------->
 
-    def __call__(self):
-       return self.invoker(self.kwargs)
+class Task():
+    def __init__(self, id, entry_point=None, **kwargs):
+        self.id = id
+        self.entry_point = entry_point
+
+        if entry_point is None:
+            raise Exception
+
+        self.invoker = load(self.entry_point)
+        self.input = Input(**kwargs)
+
+    def __call__(self, *params):
+        self.input.args = params
+        return self.invoker(self.input)
+
+    @property
+    def _info(self):
+        return {
+            "index": self.id,
+            "entry_point": self.entry_point
+        }
+
 
 class TaskRegistry():
     def __init__(self):
         self.tasks = {}
+        self.id_counter = 0
 
     def task(self, entry_point, **kwargs):
-        return NotImplemented
+        self.tasks[self.id_counter] = Task(self.id_counter, entry_point, **kwargs)
+        self.id_counter += 1
 
     def aggregate(self):
-        return NotImplemented
-
+        rewards = []
+        for task in self.tasks.values():
+            rewards.append(task())
+        return rewards
 
 task_registry = TaskRegistry()
 
 def task(entry_point, **kwargs):
     task_registry.task(entry_point, **kwargs)
+
+# Closer
+# --------------------------------------------------------------------------------------------------------------------->
+
+class Closer():
+    def __init__(self, id, entry_point=None, cached=False, cache_length = None, **kwargs):
+        self.id = id
+        self.entry_point = entry_point
+        self.cached = cached
+        self.cache_length = cache_length
+
+        invoker = load(self.entry_point)
+        self.logic = partial(invoker, **kwargs)
+
+    def __call__(self, *params):
+       return self.logic(*params)
+
+class CloserRegistry():
+    def __init__(self):
+        self.closers = {}
+        self.id_counter = 0
+
+    def closer(self, entry_point, **kwargs):
+        self.closers[self.id_counter] = Closer(self.id_counter, entry_point, **kwargs)
+        self.id_counter += 1
+
+    def close(self):
+        for close in self.closers:
+            close()
+
+closer_registry = CloserRegistry()
+
+def closer(entry_point, **kwargs):
+    closer_registry.closer(entry_point, **kwargs)

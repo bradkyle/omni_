@@ -2,7 +2,7 @@ import argparse
 import numpy as np
 import time
 
-from omni.interfaces.registration import affordance_registry,task_registry
+from omni.interfaces.registration import affordance_registry,task_registry, closer_registry
 
 # Registration Tests
 #---------------------------------------------------------------------------------------------------------------------->
@@ -26,11 +26,11 @@ def list_tasks():
 
 def test_affordances(id):
     affordance = affordance_registry.lookup(id)
-    affordance()
+    affordance(0.01, 0.1)
 
 def test_close():
     affordance = affordance_registry.lookup(id)
-    affordance(0.1, 0.1)
+    affordance()
 
 def test_tasks():
     rewards = task_registry.aggregate()
@@ -41,15 +41,35 @@ def test_tasks():
     flattened_rewards = np.hstack(rewards)
     print(flattened_rewards)
 
+    closer_registry.close()
+
+def test_single_task(id):
+    if id in task_registry.tasks:
+        task = task_registry.tasks[id]
+    else:
+        raise Exception
+    task()
+
 def main():
     parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    parser.add_argument('--aff', help='affordance ID', default=1)
+    parser.add_argument('--func', help='function to execute', default="lista")
+    parser.add_argument('--aff', help='affordance ID', default=140)
+    parser.add_argument('--tsk', help='task ID', default=None)
     args = parser.parse_args()
-    test_affordances(args.aff)
+
+    if args.func == "lista":
+        list_affordances()
+    elif args.func == "testa":
+        test_affordances(211)
+    elif args.func == "listsk":
+        list_tasks()
+    elif args.func == "testsk":
+        if args.tsk:
+            test_single_task(args.tsk)
+        else:
+            test_tasks()
+
 
 
 if __name__ == '__main__':
-    test_tasks()
-    #list_tasks()
-    # test_affordances(0)
-    # list_affordances()
+    main()
