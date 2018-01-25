@@ -1,0 +1,48 @@
+{
+    "has_oracle": false,
+    "oracle_type": "default",
+    "randomization_rate": null,
+    "max_interfaces": null,
+    "max_rewards": null,
+    "max_obs": null,
+    "charset": "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-,;.!?:'\"/\\|_@#$%^&*~`+-=<>()[]{}\n",
+    "spaces":{
+        "action_high": 1,
+        "action_low": -1,
+        "reward_high": 1,
+        "reward_low": -1,
+        "observation_high": 1,
+        "observation_low": -1
+    },
+    "interfaces": {
+        "objectives": [],
+        "tasks": [],
+        "feature": [],
+        "affordance": [],
+        "closer": [],
+    },
+    "penalty_scale": 1,
+    "notify": true,
+    "penalty":[
+        {"name":"bad_request_penalty", "magnitude": 100},
+        {"name":"bad_connection_penalty", "magnitude": 100},
+        {"name":"none_response_penalty", "magnitude": 100},
+        {"name":"not_afforded_penalty", "magnitude": 100},
+        {"name":"rate_limit_penalty", "magnitude": 100},
+        {"name":"step_penalty", "magnitude": 100},
+        {"name":"not_found_penalty", "magnitude": 100},
+        {"name":"response_size_penalty", "magnitude": 100},
+        {"name":"affordance_disabled_penalty", "magnitude": 100},
+        {"name":"wait_penalty", "magnitude": 100},
+        {"name":"rate_limit_proximity_penalty", "magnitude": 100}
+    ],
+    "processing_type": "one_hot",
+    "service_specific_config":{
+        "GeminiSandbox": {"max_order_price": 1000, "max_order_size": 1000},
+        "Gemini": {"max_order_price": 10, "max_order_size": 10},
+        "Bitfinex": {"max_order_price": 10, "max_order_size": 10}
+    },
+    "":{
+
+    }
+}

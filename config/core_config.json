@@ -1,0 +1,24 @@
+core_defaults = {
+            "encrypt":False,
+            "penalty_configs": [
+                {},
+                {},
+                {},
+            ],
+            "error_messages":[
+                ""
+            ],
+            "admin":[
+                {
+                    "name":"Brad Duncan",
+                    "email":"bradkyleduncan@gmail.com",
+                    "phone": "0742668114",
+                    "whatsapp": "0742668114",
+                }
+            ],
+            "store":{
+                "host": '127.0.0.1',
+                "port": 6379,
+                "poolsize" :10
+            }
+}

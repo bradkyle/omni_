@@ -1,0 +1,16 @@
+tensorflow
+gym
+numpy
+asynctest
+#pandas
+#asyncinit
+#cloudpickle
+#azure_common
+#baselines
+#asyncio_redis
+#requests
+#asyncinit
+#aiohttp
+#setuptools
+#aioresponses
+
